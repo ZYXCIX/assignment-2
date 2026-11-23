@@ -1,7 +1,7 @@
 ﻿id,exchange,question,stage,error,evidence,severity,handling
 E01,Greeting (2),Hello,retrieval,"Returns five irrelevant chunks (private letters, Yijing commentary, medical formulae); none used in the answer",part 784/38/838/828/1030,low,logged as retrieval noise
 E02,Exchange 1 (4-5),Wang Anshi vs Sima Guang,generation,Rewrites the History's 'Shi said' into first person without marking it as reported speech,06 part 7/8,low,acceptable for the persona
-E03,Exchange 1 (4-5),Wang Anshi vs Sima Guang,source,'Zhou Tong's memorial to enshrine Wang Anshi' is absent from the corpus (only the poem title Ci Yun Zhou Tong Hui Shi Diao remains),01: one hit for Zhou Tong,medium,flagged as model-supplied history
+E03,Exchange 1 (4-5),Wang Anshi vs Sima Guang,generation,"Selective citation: the self-impeachment line ('Wang Anshi was their leader') is quoted as Su Shi's verdict, although the same corpus holds his eulogy for Wang ('名高一时，学贯千载', part ~814)",01 part ~403 vs part ~814,medium,quote both sides
 E04,Exchange 1 (4-5),Wang Anshi vs Sima Guang,generation,"The 'linfeng / chuying' passage is in the memorials (about part 403) but is cited to part 4 (part 828, letters)",01 part 828 vs memorials,medium,citation mismatch; verify against text
 E05,Exchange 2 (11-12),How is Su Shen Liangfang coming along?,generation,'Shen Kuo informed on Su Shi' is not in the corpus,05: no hit for Wutai,low,marked as a later anecdote
 E06,Exchange 3 (9-10),Liu Yong or Xin Qiji?,generation,The letter phrase 'though lacking Liu Qi-lang's flavour' and the 'Guanxi giant' anecdote are not in the corpus,0 hits corpus-wide,medium,must separate quotation from memory
@@ -9,7 +9,8 @@ E07,Exchange 4 (6-8),Ti Xilin Bi and Deng Feilai Feng,source,Wang Anshi's Deng F
 E08,Exchange 4 (6-8),Ti Xilin Bi and Deng Feilai Feng,generation,Asserts that the link is 'unmistakable' from parallel syntax alone,01 part 114,medium,similarity is not causality
 E09,Exchange 5 (13-17),What happened around you in 1099?,retrieval,"All five sources are unrelated to Danzhou (Hangzhou memorials, imperial edicts, a deathbed letter)",part 851/577/31/1104/9,high,retrieval failure
 E10,Exchange 5 (13-17),What happened around you in 1099?,retrieval,"'Jimao Shangyuan, I was in Dan'er' exists in the corpus but was not retrieved",02 Zhilin,high,long-chunk split plus cross-language query
-E11,Exchange 5 (13-17),What happened around you in 1099?,generation,Admits narrating 'from memory'; 'Suanglang Hut' mistransliterates Guanglang'an,answer text,high,no checkable citation
+E11,Exchange 5 (13-17),What happened around you in 1099?,generation,Fills the gap from memory and says so; 'Suanglang Hut' mistransliterates Guanglang'an; the receipt is the answer's own admission,answer: 'must come from memory',high,no checkable citation
 E12,corpus-wide,-,corpus,"The index still contains pre-cleaning text (licence lines, cq= page markers)","04 part 38, line 1 'Public domain...'",medium,rebuild the index
 E13,corpus-wide,-,corpus,Variant characters (kan / yuan / gao / liu) defeat exact matching,01 part 114,medium,build a variant-character table
-E14,export,-,record,Six rounds have a question but no answer,rounds 1/6/9/11/13/15,low,retry or export artefact
+E14,export,-,record,"Turn-level record anomalies: six rounds have a question but no answer (one the garbled run below); round 14, asked in English, was answered in Chinese",rounds 1/6/9/11/13/15 empty; round 14 language drift,low,retry or export artefact; language drift noted
+E15,Exchange 5 (15-17),What happened around you in 1099?,generation,"Temperature 1.5 produced a multilingual token soup rather than an answer (Korean, Arabic letters, broken BPE fragments, symbols); the rerun at 1.0 was coherent",round 15: '석=z濤RYPTま Länder_compute …' vs rounds 16-17 (readable),high,lowered temperature to 1.0 and logged the failure
