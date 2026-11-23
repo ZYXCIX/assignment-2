@@ -1,1 +1,1 @@
-# Assignment 2: Group reflection essay
+# Assignment 2: Chatting with a Historical Figure’s Texts
